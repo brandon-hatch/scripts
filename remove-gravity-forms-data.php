@@ -51,3 +51,17 @@ text-shadow: -4px 4px #ef3550,
              -32px 32px #f9a825,
              -36px 36px #ff5722;'
 > SCRIPT COMPLETED </h1>";
+
+$results = $wpdb->get_results("
+  SELECT table_name
+  FROM information_schema.tables
+  WHERE table_type='BASE TABLE'
+    AND table_schema = 'wordpress';
+", ARRAY_A);
+
+echo ('<h3>Remaining Tables in wordpress db: </h3> <br>');
+
+foreach ($results as $result){
+  echo($result['table_name']);
+  echo('<br>');
+}
